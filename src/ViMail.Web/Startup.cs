@@ -33,6 +33,8 @@ namespace ViMail.Web
 
             services.AddCustomizedIdentity();
 
+            services.AddCookie();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -45,13 +47,16 @@ namespace ViMail.Web
             }
             else
             {
+                
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

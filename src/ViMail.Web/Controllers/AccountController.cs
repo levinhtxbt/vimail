@@ -1,40 +1,104 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using ViMail.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using ViMail.Data.Entities;
+using ViMail.Web.ViewModel;
 
 namespace ViMail.Web.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/account")]
-    [ApiController]
-    public class AccountController : ControllerBase
+    [AllowAnonymous]
+    public class AccountController : Controller
     {
-        private readonly IAccountService _accountService;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
         {
-            _accountService = accountService;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
-        [HttpGet("login")]
-        public async Task<ActionResult> Login(string username, string password)
+        [HttpGet]
+        public IActionResult Login(string returnUrl = null)
         {
-            var result = await _accountService.LoginAsync(username, password);
-            if (result)
-                return Ok("abc");
+            if (_signInManager.IsSignedIn(User))
+            {
+                return Redirect("~/");
+            }
 
-
-            return BadRequest();
+            return View();
         }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register(string username, string password)
-        {
-            var result = await _accountService.RegisterAsync(username, password);
-            if (result)
-                return Ok();
 
-            return BadRequest();
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel viewModel, string returnUrl = null)
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(viewModel.Username, viewModel.Password, true, true);
+
+                if (result.Succeeded)
+                {
+                    return LocalRedirect(returnUrl);
+                }
+
+                ModelState.AddModelError("Incorrect", "Incorrect username or password");
+                return View();
+
+            }
+            else
+            {
+                return View();
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel viewModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var result = await _userManager.CreateAsync(new User()
+                {
+                    Email = viewModel.Email,
+                    UserName = viewModel.Username
+                }, viewModel.Password);
+
+                if (result.Succeeded)
+                {
+                    // login here
+                    var signInResult = await _signInManager.PasswordSignInAsync(viewModel.Username, viewModel.Password, false, false);
+
+                    if (signInResult.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                ModelState.AddModelError("Unsuccessful", "Cannot register new user");
+            }
+            return RedirectToAction("Login");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AccessDenied()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Login");
         }
     }
 }
