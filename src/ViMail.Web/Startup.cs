@@ -1,13 +1,13 @@
 ﻿using Autofac;
+using MailChimp.Core.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
 using System.Reflection;
-using Microsoft.AspNetCore.Identity;
 using ViMail.Data;
 using ViMail.Data.Entities;
 using ViMail.Data.Interfaces;
@@ -35,6 +35,8 @@ namespace ViMail.Web
 
             services.AddCookie();
 
+            services.AddMailChimpClient("api key here");
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -47,7 +49,6 @@ namespace ViMail.Web
             }
             else
             {
-                
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
@@ -63,7 +64,6 @@ namespace ViMail.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
             });
         }
 

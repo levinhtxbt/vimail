@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViMail.Data.SqlServer", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViMail.Data.PostgreSql", "src\ViMail.Data.PostgreSql\ViMail.Data.PostgreSql.csproj", "{95FA9354-95E7-4552-AEAF-E359D1A63A5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailChimp.Core", "MailChimp.Core\MailChimp.Core.csproj", "{69C07F86-8220-4938-81EE-5A792E8D61B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,18 @@ Global
 		{95FA9354-95E7-4552-AEAF-E359D1A63A5F}.Release|x64.Build.0 = Release|Any CPU
 		{95FA9354-95E7-4552-AEAF-E359D1A63A5F}.Release|x86.ActiveCfg = Release|Any CPU
 		{95FA9354-95E7-4552-AEAF-E359D1A63A5F}.Release|x86.Build.0 = Release|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Debug|x64.Build.0 = Debug|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Debug|x86.Build.0 = Debug|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Release|x64.ActiveCfg = Release|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Release|x64.Build.0 = Release|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Release|x86.ActiveCfg = Release|Any CPU
+		{69C07F86-8220-4938-81EE-5A792E8D61B7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +151,7 @@ Global
 		{9C7B5617-9BE1-45DB-BB14-04DCF24D9098} = {CB8BB97C-4018-43DE-9C2A-F463D7EED4B9}
 		{3D925727-BE0F-417C-9C71-964E49AC3EDD} = {906413B8-2DE2-47B9-9AAE-9D88BA55B9AD}
 		{95FA9354-95E7-4552-AEAF-E359D1A63A5F} = {906413B8-2DE2-47B9-9AAE-9D88BA55B9AD}
+		{69C07F86-8220-4938-81EE-5A792E8D61B7} = {9C7B5617-9BE1-45DB-BB14-04DCF24D9098}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A351409-7A72-45F1-ADD2-6C8E578C75BB}

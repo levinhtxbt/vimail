@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MailChimp.Core\MailChimp.Core.csproj" />
     <ProjectReference Include="..\ViMail.Common\ViMail.Common.csproj" />
     <ProjectReference Include="..\ViMail.Data.MySql\ViMail.Data.MySql.csproj" />
     <ProjectReference Include="..\ViMail.Service\ViMail.Service.csproj" />
