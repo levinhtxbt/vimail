@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using MailChimp.Core.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -8,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using MailChimp.Core.Extensions;
 using ViMail.Data;
 using ViMail.Data.Entities;
 using ViMail.Data.Interfaces;
